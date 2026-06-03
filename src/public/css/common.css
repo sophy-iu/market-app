@@ -1,0 +1,43 @@
+body {
+    margin: 0;
+    font-family: Arial, "Helvetica Neue", sans-serif;
+    background: #fff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.header {
+    width: 100%;
+    height: 70px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+}
+
+.header__logo {
+    margin: 0;
+}
+
+.header__logo img {
+    width: 260px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.content {
+    width: 100%;
+}
+
+.link {
+    text-align: center;
+}
+
+.header__link {
+    color: #0073cc;
+    font-size: 14px;
+    text-decoration: none;
+}
