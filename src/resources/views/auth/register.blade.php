@@ -53,5 +53,5 @@
 @endsection
 
 @section('link')
-<a class="header__link" href="{{ route('login') }}">ログインはこちら</a>
+<a class="auth-link" href="{{ route('login') }}">ログインはこちら</a>
 @endsection
