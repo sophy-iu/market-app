@@ -49,4 +49,14 @@ class User extends Authenticatable
     public function profile(){
         return $this->hasOne('App\Models\Profile');
     }
+
+    public function purchase()
+    {
+        return $this->hasMany('App\Models\Purchase');
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
 }

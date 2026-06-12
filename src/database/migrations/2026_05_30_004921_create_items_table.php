@@ -22,7 +22,6 @@ class CreateItemsTable extends Migration
             $table->string('item_name');
             $table->string('brand_name');
             $table->integer('price');
-            $table->integer('like_number');
             $table->integer('comment_number');
             $table->text('item_description');
             $table->timestamps();

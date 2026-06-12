@@ -12,4 +12,9 @@ class Payment extends Model
     protected $fillable = [
         'payment_method',
     ];
+
+    public function purchase()
+    {
+        return $this->hasOne('App\Models\Purchase');
+    }
 }

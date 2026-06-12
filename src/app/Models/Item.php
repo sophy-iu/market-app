@@ -34,4 +34,14 @@ class Item extends Model
     {
         return $this->belongsTo(Condition::class);
     }
+
+    public function purchase()
+    {
+        return $this->hasOne('App\Models\Purchase');
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
 }

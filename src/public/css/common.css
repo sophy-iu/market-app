@@ -1,3 +1,4 @@
+/** app-header.auth-header共通スタイル */
 body {
     margin: 0;
     font-family: Arial, "Helvetica Neue", sans-serif;
@@ -42,6 +43,7 @@ body {
     text-decoration: none;
 }
 
+/** 以下、app-headerのみのスタイル */
 .header__inner {
     width: 100%;
     display: flex;
