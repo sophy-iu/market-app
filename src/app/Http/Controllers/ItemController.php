@@ -10,15 +10,32 @@ class ItemController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Item::query();
+        if ($request->tab === 'mylist') {
+            if (!auth()->check()) {
+                $items = collect();
+            } else {
+                $items = Item::with('purchase')
+                    ->whereHas('likes', function ($query) {
+                        $query->where('user_id', auth()->id());
+                    })
+                    ->when($request->keyword, function ($query, $keyword) {
+                        $query->where('item_name', 'like', '%' . $keyword . '%');
+                    })
+                    ->get();
+            }
+        } else {
+            $query = Item::with('purchase');
 
-        // ログイン中なら、自分が出品した商品を表示しない
-        if(Auth::check()) {
-            $query->where('user_id', '!=', Auth::id());
+            if (auth()->check()) {
+                $query->where('user_id', '!=', auth()->id());
+            }
+
+            if ($request->keyword) {
+                $query->where('item_name', 'like', '%' . $request->keyword . '%');
+            }
+            
+            $items = $query->get();
         }
-
-        $items = $query->get();
-        Item::with('purchase')->get();
 
         return view('items.index', compact('items'));
     }

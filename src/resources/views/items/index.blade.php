@@ -6,8 +6,8 @@
 
 @section('content')
 <div class="item-tab">
-    <a href="/" class="item-tab__link {{ request('tab') != 'mylist' ? 'active' : '' }}" >おすすめ</a>
-    <a href="/?tab=mylist" class="item-tab__link {{ request('tab') == 'mylist' ? 'active' : '' }}" >マイリスト</a>
+    <a href="/?keyword={{ request('keyword') }}" class="item-tab__link {{ request('tab') != 'mylist' ? 'active' : '' }}" >おすすめ</a>
+    <a href="/?tab=mylist&keyword={{ request('keyword') }}" class="item-tab__link {{ request('tab') == 'mylist' ? 'active' : '' }}" >マイリスト</a>
 </div>
 <div class="item-content">
     @foreach($items as $item)
