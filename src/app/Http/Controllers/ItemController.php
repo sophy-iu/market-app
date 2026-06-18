@@ -39,4 +39,9 @@ class ItemController extends Controller
 
         return view('items.index', compact('items'));
     }
+
+    public function detail(Request $request)
+    {
+        return view('items.detail', compact('items'));
+    }
 }
