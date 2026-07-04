@@ -21,11 +21,17 @@ Route::get('/', [ItemController::class, 'index']);
 Route::get('/item/{item_id}', [ItemController::class, 'detail']);
 
 Route::middleware('auth')->group(function () {
-    Route::get('/purchase/{item_id}', [PurchaseController::class, 'detail']);
+    Route::get('/purchase/{item_id}', [PurchaseController::class, 'index']);
+    Route::post('/purchase/{item_id}', [PurchaseController::class, 'purchase']);
+    
     Route::get('/sell', [ItemController::class, 'sell']);
 
     Route::get('/purchase/address/{item_id}', [AddressController::class, 'address']);
+    Route::post('/purchase/address/{item_id}', [AddressController::class, 'update']);
 
     Route::get('/mypage', [ProfileController::class, 'profile']);
     Route::get('/mypage/profile', [ProfileController::class, 'edit']);
+
+    Route::post('/item/{item_id}', [ItemController::class, 'like']);
+    Route::post('/item/{item_id}', [ItemController::class, 'comment']);
 });

@@ -11,7 +11,7 @@
 </div>
 <div class="item-content">
     @foreach($items as $item)
-        <a href="/item/{item->id}" class="item-link">
+        <a href="/item/{{ $item->id }}" class="item-link">
             <div class="item-card">
                 @if($item->purchase)
                     <span class="item-card__sold">Sold</span>
