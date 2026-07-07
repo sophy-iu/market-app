@@ -17,7 +17,7 @@
                 @if(request('tab')==='mylist')
                     <input type="hidden" name="tab" value="mylist">
                 @endif
-                <input type="text" class="header__search-form__keyword" name="keyword" placeholder="なにをお探しですか？" value="{{request('keyword')}}">
+                <input type="text" class="header__search-form__keyword" name="keyword" placeholder="なにをお探しですか？" value="{{ request('keyword') }}">
             </form>
             <nav class="header__nav">
                 @auth

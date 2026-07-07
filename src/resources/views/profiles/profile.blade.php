@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="profile">
-    <img src="{{ asset('images/default-user.png') }}" class="profile__img" />
+    <img src="{{ $profile->image ? asset('storage/' . $profile->image) : asset('images/default-user.png') }}" class="profile__img" alt="プロフィール画像" />
     <p class="profile__name">{{ $user->profile->name ?? $user->name }}</p>
     <a href="/mypage/profile" class="profile__edit-link">プロフィールを編集</a>
 </div>

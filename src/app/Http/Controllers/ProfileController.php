@@ -17,6 +17,7 @@ class ProfileController extends Controller
             $items = Item::where('user_id', auth()->id())->get();
         }
         $user = auth()->user();
+        $imagePath = $request->file('image')->store('profiles', 'public');
         return view('profile.profile', compact('items','user'));
     }
 }
