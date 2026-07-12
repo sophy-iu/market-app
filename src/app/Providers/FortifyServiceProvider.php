@@ -13,6 +13,8 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Contracts\RegisterResponse;
+use Laravel\Fortify\Contracts\VerifyEmailResponse;
+use Laravel\Fortify\Contracts\LoginResponse;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -37,6 +39,10 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.login');
         });
 
+        Fortify::verifyEmailView(function () {
+            return view('auth.verify-email');
+        });
+
         RateLimiter::for('login', function (Request $request) {
             $email = (string) $request->email;
 
@@ -47,7 +53,29 @@ class FortifyServiceProvider extends ServiceProvider
             return new class implements RegisterResponse {
                 public function toResponse($request)
                 {
+                    return redirect()->route('verification.notice');
+                }
+            };
+        });
+
+        $this->app->singleton(VerifyEmailResponse::class, function () {
+            return new class implements VerifyEmailResponse {
+                public function toResponse($request)
+                {
                     return redirect('/mypage/profile');
+                }
+            };
+        });
+
+        $this->app->singleton(LoginResponse::class, function () {
+            return new class implements LoginResponse {
+                public function toResponse($request)
+                {
+                    if (! $request->user()->hasVerifiedEmail()) {
+                        return redirect()->route('verification.notice');
+                    }
+
+                    return redirect('/');
                 }
             };
         });

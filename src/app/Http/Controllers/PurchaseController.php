@@ -13,8 +13,12 @@ class PurchaseController extends Controller
     public function purchase($item_id)
     {
         Purchase::create([
-        'user_id' => auth()->id(),
-        'item_id' => $item_id,
+            'user_id' => auth()->id(),
+            'item_id' => $item->id,
+            'payment_method' => $request->payment_method,
+            'postal_code' => $request->postal_code,
+            'address' => $request->address,
+            'building' => $request->building,
         ]);
         return redirect()->away('https://buy.stripe.com/test_aFa6oGa6jgVL7lu4r53sI00');
     }

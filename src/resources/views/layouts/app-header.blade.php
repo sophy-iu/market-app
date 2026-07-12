@@ -17,8 +17,14 @@
                 @if(request('tab')==='mylist')
                     <input type="hidden" name="tab" value="mylist">
                 @endif
-                <input type="text" class="header__search-form__keyword" name="keyword" placeholder="なにをお探しですか？" value="{{ request('keyword') }}">
+                <input type="text" class="header__search-keyword" name="keyword" placeholder="なにをお探しですか？" value="{{ request('keyword') }}">
             </form>
+            <input type="checkbox" id="hamburger" class="header__hamburger-check">
+            <label for="hamburger" class="header__hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
             <nav class="header__nav">
                 @auth
                     <form action="{{ route('logout') }}" method="POST">

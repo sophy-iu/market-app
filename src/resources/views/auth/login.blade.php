@@ -28,7 +28,7 @@
                     @enderror
                 </p>
             </div>
-            <input class="login-form__btn" type="submit" value="登録する">
+            <input class="login-form__btn" type="submit" value="ログインする">
         </form>
     </div>
 </div>

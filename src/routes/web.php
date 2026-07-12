@@ -20,7 +20,7 @@ use App\Http\Controllers\ProfileController;
 Route::get('/', [ItemController::class, 'index']);
 Route::get('/item/{item_id}', [ItemController::class, 'detail']);
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth','verified')->group(function () {
     Route::get('/purchase/{item_id}', [PurchaseController::class, 'index']);
     Route::post('/purchase/{item_id}', [PurchaseController::class, 'purchase']);
     

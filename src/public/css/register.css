@@ -60,3 +60,24 @@
 .link {
     margin-top: 18px;
 }
+
+@media screen and (min-width: 1400px) and (max-width: 1540px) {
+    .register__inner {
+        max-width: 500px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 850px) {
+    .register {
+        padding: 50px 32px 0;
+    }
+
+    .register__inner {
+        max-width: 480px;
+    }
+
+    .register__heading {
+        font-size: 24px;
+        margin-bottom: 40px;
+    }
+}

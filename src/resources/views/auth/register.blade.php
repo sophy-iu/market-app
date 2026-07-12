@@ -46,7 +46,7 @@
                     @enderror
                 </p>
             </div>
-            <input class="register-form__btn btn" type="submit" value="登録する">
+            <input class="register-form__btn" type="submit" value="登録する">
         </form>
     </div>
 </div>
