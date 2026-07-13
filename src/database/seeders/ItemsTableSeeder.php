@@ -126,5 +126,6 @@ class ItemsTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
         ];
+        DB::table('items')->insert($items);
     }
 }

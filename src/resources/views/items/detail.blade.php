@@ -45,7 +45,12 @@
         </div>
         <div class="item-detail__info">
             <h3 class="item-info__tag">商品の情報</h3>
-            <p class="item-detail__category">カテゴリー {{ $item->category->name }}</p>
+            <p class="item-detail__category">
+                カテゴリー
+                @foreach ($item->categories as $category)
+                    <span>{{ $category->name }}</span>
+                @endforeach
+            </p>
             <p class="item-detail__condition">商品の状態 {{ $item->condition->name }}</p>
         </div>
         <div class="item-comment">
