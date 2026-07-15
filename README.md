@@ -62,7 +62,7 @@ php artisan db:seed
 - 
 
 ## ER図
-![ER図](er.png)
+![ER図](index.drawio.png)
 
 ## URL
 - 開発環境：http://localhost/
