@@ -1,0 +1,135 @@
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    max-width: 900px;
+    margin: 40px auto 35px;
+    padding: 0 20px;
+}
+
+.profile__img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #d9d9d9;
+}
+
+.profile__name {
+    min-width: 180px;
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.profile__edit-link {
+    display: inline-block;
+    padding: 10px 18px;
+    color: #ff5555;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    border: 2px solid #ff5555;
+    border-radius: 5px;
+    transition: 0.2s;
+}
+
+.profile__edit-link:hover {
+    color: #fff;
+    background-color: #ff5555;
+}
+
+.mypage-tab {
+    display: flex;
+    gap: 55px;
+    padding: 0 0 12px 60px;
+    border-bottom: 2px solid #cfcfcf;
+}
+
+.mypage-tab__link {
+    color: #555;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.mypage-tab__link.active {
+    color: #ff5555;
+}
+
+.item {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 42px 28px;
+    padding: 28px 34px 60px;
+}
+
+.item-link {
+    color: #000;
+    text-decoration: none;
+}
+
+.item-card {
+    position: relative;
+}
+
+.item-card__img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    background-color: #d9d9d9;
+    border-radius: 3px;
+}
+
+.item-card__name {
+    margin: 8px 0 0;
+    font-size: 15px;
+}
+
+.item-card__sold {
+    position: absolute;
+    top: 8px;
+    left: 0;
+    z-index: 1;
+    padding: 5px 12px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    background-color: #ff5555;
+    border-radius: 0 4px 4px 0;
+}
+
+@media screen and (max-width: 850px) {
+    .profile {
+        gap: 30px;
+    }
+
+    .item {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .profile {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .profile__name {
+        min-width: auto;
+    }
+
+    .mypage-tab {
+        justify-content: center;
+        gap: 30px;
+        padding-left: 0;
+    }
+
+    .item {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding: 24px 20px 50px;
+    }
+}

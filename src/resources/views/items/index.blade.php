@@ -16,7 +16,7 @@
                 @if($item->purchase)
                     <span class="item-card__sold">Sold</span>
                 @endif
-                <img src="{{ asset($item->image) }}" alt="{{ $item->item_name }}" class="item-card__img" />
+                <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->item_name }}" class="item-card__img" />
                 <p class="item-card__name">{{$item->item_name}}</p>
             </div>
         </a>

@@ -1,0 +1,75 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    color: #333;
+    font-family: Arial, "Helvetica Neue", sans-serif;
+}
+
+.verify-email {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: calc(100vh - 80px);
+    padding: 160px 20px 40px;
+    text-align: center;
+}
+
+.verify-email__message {
+    margin: 0;
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 1.6;
+}
+
+.verify-email__link {
+    display: inline-block;
+    margin-top: 45px;
+    padding: 13px 24px;
+    color: #333;
+    background-color: #d9d9d9;
+    border: 1px solid #777;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.verify-email__link:hover {
+    opacity: 0.8;
+}
+
+.verify-email__resend-form {
+    margin-top: 35px;
+}
+
+.verify-email__resend-button {
+    padding: 0;
+    color: #3498db;
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.verify-email__resend-button:hover {
+    text-decoration: underline;
+}
+
+@media screen and (min-width: 768px) and (max-width: 850px) {
+    .verify-email {
+        padding-top: 110px;
+    }
+
+    .verify-email__message {
+        font-size: 15px;
+    }
+
+    .verify-email__link {
+        margin-top: 35px;
+        font-size: 15px;
+    }
+}

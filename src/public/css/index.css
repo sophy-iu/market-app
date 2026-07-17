@@ -61,3 +61,34 @@
     font-size: 14px;
     font-weight: bold;
 }
+
+@media screen and (min-width: 768px) and (max-width: 850px) {
+    .item-tab {
+        gap: 50px;
+        padding: 35px 80px 15px;
+    }
+
+    .item-tab__link {
+        font-size: 18px;
+    }
+
+    .item-content {
+        gap: 50px 35px;
+        padding: 40px 35px;
+    }
+
+    .item-link {
+        width: calc((100% - 70px) / 3);
+    }
+
+    .item-card__img,
+    .img-content {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+    }
+
+    .item-card__name {
+        font-size: 18px;
+    }
+}

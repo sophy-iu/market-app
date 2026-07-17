@@ -20,18 +20,21 @@ use App\Http\Controllers\ProfileController;
 Route::get('/', [ItemController::class, 'index']);
 Route::get('/item/{item_id}', [ItemController::class, 'detail']);
 
-Route::middleware('auth','verified')->group(function () {
+Route::middleware(['auth','verified'])->group(function () {
     Route::get('/purchase/{item_id}', [PurchaseController::class, 'index']);
     Route::post('/purchase/{item_id}', [PurchaseController::class, 'purchase']);
     
     Route::get('/sell', [ItemController::class, 'sell']);
+    Route::post('/sell', [ItemController::class, 'store']);
 
     Route::get('/purchase/address/{item_id}', [AddressController::class, 'address']);
     Route::post('/purchase/address/{item_id}', [AddressController::class, 'update']);
 
     Route::get('/mypage', [ProfileController::class, 'profile']);
     Route::get('/mypage/profile', [ProfileController::class, 'edit']);
+    Route::post('/mypage/profile', [ProfileController::class, 'update']);
 
-    Route::post('/item/{item_id}', [ItemController::class, 'like']);
-    Route::post('/item/{item_id}', [ItemController::class, 'comment']);
+    Route::post('/item/{item_id}/like', [ItemController::class, 'like'])
+        ->name('item.like');
+    Route::post('/item/{item_id}/comment', [ItemController::class, 'comment']);
 });

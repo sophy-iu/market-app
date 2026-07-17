@@ -9,12 +9,17 @@ class like extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+    'user_id',
+    'item_id',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-public function item()
+    public function item()
     {
         return $this->belongsTo(Item::class);
     }

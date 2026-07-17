@@ -9,17 +9,20 @@
     @csrf
     <div class="purchase__left">
         <div class="item-detail">
-            <img src="{{ asset($item->image) }}" alt="{{ $item->item_name }}" class="item-detail__img" />
+            <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->item_name }}" class="item-detail__img" />
             <h2 class="item-detail__name">{{$item->item_name}}</h2>
             <p class="item-detail__price">¥{{ number_format($item->price) }}</p>
         </div>
         <div class="payment-method">
             <h3 class="payment-method__tag">支払い方法</h3>
-            <select id="payment_method" name="payment_method" class="payment-method__select" required>
+            <select id="payment_method" name="payment_method" class="payment-method__select" onchange="this.classList.toggle('is-selected', this.value !== '')">
                 <option value="" disabled selected>選択してください</option>
                 <option value="convenience_store">コンビニ払い</option>
                 <option value="card">カード払い</option>
             </select>
+            @error('payment_method')
+                <p class="purchase__error">{{ $message }}</p>
+            @enderror
         </div>
         <div class="address">
             <div class="address__inner">
@@ -29,12 +32,18 @@
             @php
                 $purchaseAddress = session('purchase_address');
                 $profile = auth()->user()->profile;
+                $postalCode = $purchaseAddress['postal_code'] ?? $profile->postal_code;
+                $address = $purchaseAddress['address'] ?? $profile->address;
+                $building = $purchaseAddress['building'] ?? $profile->building;
             @endphp
             <p class="address__confirmation">
-                〒{{ $purchaseAddress['postal_code'] ?? $profile->postal_code }}<br>
-                {{ $purchaseAddress['address'] ?? $profile->address }}
-                {{ $purchaseAddress['building'] ?? $profile->building }}
+                〒{{ $postalCode }}<br>
+                {{ $address }}
+                {{ $building }}
             </p>
+            <input type="hidden" name="postal_code" value="{{ $postalCode }}">
+            <input type="hidden" name="address" value="{{ $address }}">
+            <input type="hidden" name="building" value="{{ $building }}">
         </div>
     </div>
     <div class="purchase__right">

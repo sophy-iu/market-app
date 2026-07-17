@@ -1,0 +1,99 @@
+.address {
+    max-width: 680px;
+    margin: 50px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.address__heading {
+    margin-bottom: 50px;
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: #222;
+}
+
+.address__inner {
+    width: 100%;
+}
+
+.address-form {
+    width: 100%;
+}
+
+.address-form__group {
+    margin-bottom: 32px;
+}
+
+.address-form__label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #222;
+}
+
+.address-form__input {
+    width: 100%;
+    height: 48px;
+    padding: 0 14px;
+    font-size: 16px;
+    border: 1px solid #bfbfbf;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+.address-form__input:focus {
+    outline: none;
+    border-color: #ff5555;
+}
+
+.address-form__btn {
+    width: 100%;
+    height: 50px;
+    margin-top: 50px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    background: #ff5555;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.address-form__btn:hover {
+    background: #e84b4b;
+}
+
+.address-form__error {
+    margin: 5px 0 0;
+    color: #ff5555;
+    font-size: 14px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 850px) {
+    .address {
+        margin: 40px auto;
+        padding: 0 16px;
+    }
+
+    .address__heading {
+        font-size: 28px;
+        margin-bottom: 40px;
+    }
+
+    .address-form__label {
+        font-size: 16px;
+    }
+
+    .address-form__input {
+        height: 44px;
+        font-size: 15px;
+    }
+
+    .address-form__btn {
+        height: 46px;
+        font-size: 16px;
+    }
+}

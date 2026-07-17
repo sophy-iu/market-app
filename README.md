@@ -1,5 +1,10 @@
 # COACHTECH(フリマアプリ)
 
+## 概要
+
+商品を出品・購入できるフリマアプリです。
+会員登録、メール認証、商品検索、いいね、コメント、購入などの機能を実装しています。
+
 ## 環境構築
 **Dockerビルド**
 1. `git clone git@github.com:sophy-iu/market-app.git`
@@ -20,6 +25,7 @@ mysql:
 1. `docker-compose exec php bash`
 2. `composer install`
 3. 「.env.example」ファイルを 「.env」ファイルに命名を変更。または、新しく.envファイルを作成
+    `cp .env.example .env`
 4. .envに以下の環境変数を追加
 ``` text
 DB_CONNECTION=mysql
@@ -59,15 +65,23 @@ php artisan db:seed
 - PHP8.1.34
 - Laravel8.83.29
 - MySQL8.0.26
-- 
+- Nginx 1.21.1
+- Docker / Docker Compose
+- Laravel Fortify
+- MailHog
 
 ## ER図
 ![ER図](index.drawio.png)
 
 ## URL
 - 開発環境：http://localhost/
-- phpMyAdmin:：http://localhost:8080/
+- phpMyAdmin:http://localhost:8080/
+- MailHog：http://localhost:8025/
+
+## テストユーザー
+1. メールアドレス：test@example.com
+    パスワード：password123
 
 ## その他
 - メール認証はmailhog使用
-- コーチと相談の上、商品購入画面の確認画面はJavascript使用
+- コーチとの相談により、商品購入画面の表示切り替えにはJavaScriptを使用しています。

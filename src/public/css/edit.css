@@ -1,0 +1,151 @@
+.profile-edit {
+    max-width: 520px;
+    margin: 50px auto;
+    padding-bottom: 50px;
+}
+
+.profile-edit__title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+
+.profile-edit__form {
+    width: 100%;
+}
+
+.profile-edit__image-area {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.profile-edit__img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #d9d9d9;
+}
+
+.profile-edit__image-input {
+    display: none;
+}
+
+.profile-edit__image-label {
+    display: inline-block;
+    padding: 8px 18px;
+    border: 2px solid #ff5b5b;
+    color: #ff5b5b;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.profile-edit__image-label:hover {
+    background: #ff5b5b;
+    color: #fff;
+}
+
+.profile-edit__group {
+    margin-bottom: 28px;
+}
+
+.profile-edit__label {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.profile-edit__input {
+    width: 100%;
+    height: 48px;
+    padding: 0 15px;
+    font-size: 16px;
+    border: 1px solid #cfcfcf;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.profile-edit__input:focus {
+    outline: none;
+    border-color: #ff5b5b;
+}
+
+.profile-edit__btn {
+    width: 100%;
+    height: 50px;
+    margin-top: 30px;
+    background: #ff5b5b;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.profile-edit__btn:hover {
+    background: #ff4343;
+}
+
+.profile-form__error {
+    margin: 5px 0 0;
+    color: #ff5555;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+@media screen and (min-width: 768px) and (max-width: 850px) {
+    .profile-edit {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 0 40px 50px;
+        box-sizing: border-box;
+    }
+
+    .profile-edit__title {
+        font-size: 26px;
+        margin-bottom: 40px;
+    }
+
+    .profile-edit__image-area {
+        gap: 25px;
+        margin-bottom: 40px;
+    }
+
+    .profile-edit__img {
+        width: 110px;
+        height: 110px;
+    }
+
+    .profile-edit__image-label {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .profile-edit__group {
+        margin-bottom: 24px;
+    }
+
+    .profile-edit__label {
+        font-size: 17px;
+        margin-bottom: 8px;
+    }
+
+    .profile-edit__input {
+        height: 46px;
+        font-size: 16px;
+    }
+
+    .profile-edit__btn {
+        height: 48px;
+        margin-top: 25px;
+        font-size: 17px;
+    }
+}
