@@ -31,20 +31,22 @@ class FunctionTest extends TestCase
      */
     public function test_name_required_shows_validation_message()
     {
-        $response = $this->followingRedirects()
-        ->post('/register', [
-            'email' => 'test@example.com',
-            'password' => 'password123',
-            'password_confirmation' => 'password123',
+        $response = $this->from('/register')
+            ->followingRedirects()
+            ->post('/register', [
+                'email' => 'test@example.com',
+                'password' => 'password123',
+                'password_confirmation' => 'password123',
 
-        ]);
+            ]);
 
         $response->assertSee('お名前を入力してください');
     }
 
     public function test_email_required_shows_validation_message()
     {
-        $response = $this->followingRedirects()
+        $response = $this->from('/register')
+            ->followingRedirects()
             ->post('/register', [
                 'name' => 'テスト太郎',
                 'password' => 'password123',
@@ -56,7 +58,8 @@ class FunctionTest extends TestCase
 
     public function test_password_required_shows_validation_message()
     {
-        $response = $this->followingRedirects()
+        $response = $this->from('/register')
+            ->followingRedirects()
             ->post('/register', [
                 'name' => 'テスト太郎',
                 'email' => 'test@example.com',
@@ -68,7 +71,8 @@ class FunctionTest extends TestCase
 
     public function test_password_min_shows_validation_message()
     {
-        $response = $this->followingRedirects()
+        $response = $this->from('/register')
+            ->followingRedirects()
             ->post('/register', [
                 'name' => 'テスト太郎',
                 'email' => 'test@example.com',
@@ -81,7 +85,8 @@ class FunctionTest extends TestCase
 
     public function test_password_confirmed_shows_validation_message()
     {
-        $response = $this->followingRedirects()
+        $response = $this->from('/register')
+            ->followingRedirects()
             ->post('/register', [
                 'name' => 'テスト太郎',
                 'email' => 'test@example.com',
@@ -94,7 +99,8 @@ class FunctionTest extends TestCase
 
     public function test_user_can_register_and_redirect_to_profile()
     {
-        $response = $this->post('/register', [
+        $response = $this->from('/register')
+            ->post('/register', [
             'name' => 'テスト太郎',
             'email' => 'test@example.com',
             'password' => 'password123',
@@ -111,7 +117,8 @@ class FunctionTest extends TestCase
 
     public function test_login_email_required_shows_validation_message()
     {
-        $response = $this->followingRedirects()
+        $response = $this->from('/login')
+            ->followingRedirects()
             ->post('/login', [
                 'password' => 'password123',
             ]);
@@ -121,7 +128,8 @@ class FunctionTest extends TestCase
 
     public function test_login_password_required_shows_validation_message()
     {
-        $response = $this->followingRedirects()
+        $response = $this->from('/login')
+            ->followingRedirects()
             ->post('/login', [
                 'email' => 'test@example.com',
             ]);
@@ -131,7 +139,8 @@ class FunctionTest extends TestCase
 
     public function test_login_with_invalid_credentials_shows_validation_message()
     {
-        $response = $this->followingRedirects()
+        $response = $this->from('/login')
+            ->followingRedirects()
             ->post('/login', [
                 'email' => 'test@example.com',
                 'password' => 'password123',
@@ -198,6 +207,10 @@ class FunctionTest extends TestCase
         Purchase::create([
             'user_id' => $buyer->id,
             'item_id' => $item->id,
+            'payment_method' => 'card',
+            'postal_code' => '123-4567',
+            'address' => '東京都新宿区1-1',
+            'building' => null,
         ]);
 
         $response = $this->get('/');
@@ -278,6 +291,10 @@ class FunctionTest extends TestCase
         Purchase::create([
             'user_id' => $buyer->id,
             'item_id' => $item->id,
+            'payment_method' => 'card',
+            'postal_code' => '123-4567',
+            'address' => '東京都新宿区1-1',
+            'building' => null,
         ]);
 
         $response = $this->actingAs($user)
@@ -507,6 +524,7 @@ class FunctionTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)
+            ->from('/item/' . $item->id)
             ->followingRedirects()
             ->post('/item/' . $item->id . '/like');
 
@@ -572,6 +590,7 @@ class FunctionTest extends TestCase
         $this->assertSame(0, $item->comments()->count());
 
         $response = $this->actingAs($user)
+            ->from('/item/' . $item->id)
             ->followingRedirects()
             ->post('/item/' . $item->id . '/comment', [
                 'comment' => 'とても素敵な商品ですね',
@@ -675,13 +694,21 @@ class FunctionTest extends TestCase
         $response = $this->actingAs($buyer)
             ->post('/purchase/' . $item->id, [
                 'payment_method' => 'card',
+                'postal_code' => '123-4567',
+                'address' => '東京都新宿区1-1',
+                'building' => '',
             ]);
 
-        $response->assertRedirect('/');
+        $response->assertRedirect(
+            'https://buy.stripe.com/test_aFa6oGa6jgVL7lu4r53sI00'
+        );
 
         $this->assertDatabaseHas('purchases', [
             'user_id' => $buyer->id,
             'item_id' => $item->id,
+            'payment_method' => 'card',
+            'postal_code' => '123-4567',
+            'address' => '東京都新宿区1-1',
         ]);
     }
 
@@ -698,9 +725,14 @@ class FunctionTest extends TestCase
         $purchaseResponse = $this->actingAs($buyer)
             ->post('/purchase/' . $item->id, [
                 'payment_method' => 'card',
+                'postal_code' => '123-4567',
+                'address' => '東京都新宿区1-1',
+                'building' => '',
             ]);
 
-        $purchaseResponse->assertRedirect('/');
+        $purchaseResponse->assertRedirect(
+            'https://buy.stripe.com/test_aFa6oGa6jgVL7lu4r53sI00'
+        );
 
         $this->assertDatabaseHas('purchases', [
             'user_id' => $buyer->id,
@@ -729,6 +761,9 @@ class FunctionTest extends TestCase
         $purchaseResponse = $this->actingAs($buyer)
             ->post('/purchase/' . $item->id, [
                 'payment_method' => 'card',
+                'postal_code' => '123-4567',
+                'address' => '東京都新宿区1-1',
+                'building' => '',
             ]);
 
         $this->assertDatabaseHas('purchases', [

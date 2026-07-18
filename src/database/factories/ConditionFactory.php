@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ConditionFactory extends Factory
 {
-    use HasFactory;
     protected $model = Condition::class;
     /**
      * Define the model's default state.

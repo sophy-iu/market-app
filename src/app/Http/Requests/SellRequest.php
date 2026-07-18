@@ -27,7 +27,8 @@ class SellRequest extends FormRequest
             'item_name' => ['required', 'string'],
             'item_description' => ['required', 'string', 'max:255'],
             'image' => ['required', 'image', 'mimes:jpeg,png'],
-            'category_id' => ['required', 'exists:categories,id'],
+            'categories' => ['required', 'array', 'min:1'],
+            'categories.*' => ['exists:categories,id'],
             'condition_id' => ['required', 'exists:conditions,id'],
             'price' => ['required', 'numeric', 'min:0'],
             'brand_name' => ['nullable', 'string'],
@@ -46,8 +47,9 @@ class SellRequest extends FormRequest
             'image.image' => '画像ファイルを選択してください。',
             'image.mimes' => '商品画像は.jpegまたは.png形式でアップロードしてください。',
 
-            'category_id.required' => '商品のカテゴリーを選択してください。',
-            'category_id.exists' => '選択されたカテゴリーが正しくありません。',
+            'categories.required' => '商品のカテゴリーを選択してください。',
+            'categories.min' => '商品のカテゴリーを選択してください。',
+            'categories.array' => '商品のカテゴリーを選択してください。',
 
             'condition_id.required' => '商品の状態を選択してください。',
             'condition_id.exists' => '選択された商品の状態が正しくありません。',

@@ -24,6 +24,11 @@ mysql:
 **Laravel環境構築**
 1. `docker-compose exec php bash`
 2. `composer install`
+
+> `composer install`でエラーが起きた場合、
+`composer remove laravel-lang/lang`を実施、「Deprecated: PHP Startup: Use of mbstring.internal_encoding is deprecated in Unknown on line 0
+laravel-lang/lang could not be found in require but it is present in require-dev
+Do you want to remove it from require-dev [yes]?」このMSGに`y`を返答し再度`composer install`を実施。その後、3以降を続ける。
 3. 「.env.example」ファイルを 「.env」ファイルに命名を変更。または、新しく.envファイルを作成
     `cp .env.example .env`
 4. .envに以下の環境変数を追加

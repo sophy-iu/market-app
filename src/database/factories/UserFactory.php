@@ -7,7 +7,6 @@ use Illuminate\Support\Str;
 
 class UserFactory extends Factory
 {
-    use HasFactory;
     /**
      * Define the model's default state.
      *
